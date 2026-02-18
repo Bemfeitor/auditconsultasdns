@@ -21,15 +21,21 @@ import {
 } from "@/components/ui/sidebar";
 import { getLoginUrl } from "@/const";
 import { useIsMobile } from "@/hooks/useMobile";
-import { LayoutDashboard, LogOut, PanelLeft, Users } from "lucide-react";
+import { LayoutDashboard, LogOut, PanelLeft, Users, Activity, Shield, FileText, Bell, Calendar, Settings } from "lucide-react";
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import { DashboardLayoutSkeleton } from './DashboardLayoutSkeleton';
 import { Button } from "./ui/button";
 
 const menuItems = [
-  { icon: LayoutDashboard, label: "Page 1", path: "/" },
-  { icon: Users, label: "Page 2", path: "/some-path" },
+  { icon: LayoutDashboard, label: "Dashboard Geral", path: "/" },
+  { icon: Activity, label: "MonitorHub", path: "/monitor" },
+  { icon: Users, label: "Clientes", path: "/clientes" },
+  { icon: Shield, label: "Certificados", path: "/certificados" },
+  { icon: FileText, label: "Procurações", path: "/procuracoes" },
+  { icon: Bell, label: "Notificações", path: "/notificacoes" },
+  { icon: Calendar, label: "Agendamentos", path: "/agendamentos" },
+  { icon: Settings, label: "Configurações", path: "/configuracoes" },
 ];
 
 const SIDEBAR_WIDTH_KEY = "sidebar-width";
@@ -170,9 +176,12 @@ function DashboardLayoutContent({
               </button>
               {!isCollapsed ? (
                 <div className="flex items-center gap-2 min-w-0">
-                  <span className="font-semibold tracking-tight truncate">
-                    Navigation
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <Activity className="h-5 w-5 text-primary shrink-0" />
+                    <span className="font-semibold tracking-tight truncate">
+                      MonitorHub
+                    </span>
+                  </div>
                 </div>
               ) : null}
             </div>
