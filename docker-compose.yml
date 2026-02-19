@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=${DATABASE_URL}
+      - INFOSIMPLES_API_TOKEN=${INFOSIMPLES_API_TOKEN}
+      - INFOSIMPLES_BASE_URL=${INFOSIMPLES_BASE_URL}
+      - OAUTH_SERVER_URL=${OAUTH_SERVER_URL}
+      - VITE_ANALYTICS_ENDPOINT=${VITE_ANALYTICS_ENDPOINT}
+      - VITE_ANALYTICS_WEBSITE_ID=${VITE_ANALYTICS_WEBSITE_ID}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Serviço opcional para o módulo de cobrança (porta 3001)
+  cobranca:
+    build:
+      context: ./modulo-cobranca
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - BRADESCO_API_KEY=${BRADESCO_API_KEY}
+      - BRADESCO_API_SECRET=${BRADESCO_API_SECRET}
+    restart: unless-stopped
+    depends_on:
+      - app
