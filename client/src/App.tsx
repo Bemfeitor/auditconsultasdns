@@ -23,6 +23,7 @@ import ProcessosFiscais from "./pages/ProcessosFiscais";
 
 import ConsultasMassa from "./pages/ConsultasMassa";
 import Equipe from "./pages/Equipe";
+import { LicitIA } from "./licitia";
 
 function Router() {
   return (
@@ -45,6 +46,7 @@ function Router() {
       <Route path="/processos-fiscais" component={ProcessosFiscais} />
       <Route path="/consultas-massa" component={ConsultasMassa} />
       <Route path="/equipe" component={Equipe} />
+      <Route path="/licitia" component={LicitIA} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>
