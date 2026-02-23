@@ -33,7 +33,7 @@ export default function Home() {
           <div>
             <h1 className="text-3xl font-bold text-foreground">Dashboard Geral</h1>
             <p className="text-muted-foreground mt-1">
-              Bem-vindo ao MonitorHub - Sistema de Monitoramento de Declarações Fiscais
+              Bem-Vindo ao IAudit
             </p>
           </div>
           <Button size="sm" variant="outline">
